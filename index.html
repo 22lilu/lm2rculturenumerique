@@ -4,88 +4,119 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>numUber.tv</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
   <style>
     :root {
-      --mauve-fonce: #4a2371;
-      --mauve: #7b4bb0;
-      --mauve-clair: #e9defa;
-      --fond: #faf7ff;
+      --violet-texte: #3b1c6b;
+      --violet-header: #c4a5f5;
+      --violet-onglet: #d9c4fa;
+      --violet-clair: #efe5ff;
+      --fond: #fbf8ff;
     }
     * { box-sizing: border-box; }
     body {
       margin: 0;
-      font-family: Georgia, serif;
+      font-family: 'Lato', Arial, sans-serif;
       background: var(--fond);
-      color: #2a1a3d;
-      line-height: 1.7;
+      color: #2e1d4a;
+      line-height: 1.75;
+      font-size: 1.05rem;
     }
+
+    /* Les boutons radio qui commandent les onglets (invisibles) */
+    input[type="radio"] { position: absolute; opacity: 0; pointer-events: none; }
+
     header {
-      background: var(--mauve-fonce);
-      color: white;
+      background: var(--violet-header);
       text-align: center;
-      padding: 2rem 1rem 1rem;
+      padding: 2.2rem 1rem 0;
     }
-    header h1 { margin: 0; font-size: 2.4rem; letter-spacing: 1px; }
+    header h1 {
+      margin: 0;
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 2.8rem;
+      color: var(--violet-texte);
+      letter-spacing: 1px;
+    }
     nav {
       display: flex;
       justify-content: center;
       gap: .5rem;
-      margin-top: 1.5rem;
+      margin-top: 1.6rem;
     }
-    nav button {
-      background: var(--mauve);
-      color: white;
-      border: none;
-      padding: .8rem 1.6rem;
-      font-size: 1rem;
-      font-family: inherit;
+    nav label {
+      background: var(--violet-onglet);
+      color: var(--violet-texte);
+      padding: .8rem 1.8rem;
+      font-weight: 700;
       cursor: pointer;
-      border-radius: 8px 8px 0 0;
+      border-radius: 10px 10px 0 0;
+      transition: background .2s;
     }
-    nav button:hover { background: #8f62c4; }
-    nav button.actif { background: var(--fond); color: var(--mauve-fonce); font-weight: bold; }
-    main { max-width: 800px; margin: 2rem auto; padding: 0 1rem; }
+    nav label:hover { background: #e6d6fc; }
+
+    /* Onglet actif */
+    #tab-projet:checked ~ header label[for="tab-projet"],
+    #tab-enquete:checked ~ header label[for="tab-enquete"] {
+      background: var(--fond);
+    }
+
+    main { max-width: 800px; margin: 2.2rem auto; padding: 0 1.2rem; }
     section { display: none; }
-    section.actif { display: block; }
-    h2 { color: var(--mauve-fonce); border-bottom: 3px solid var(--mauve-clair); padding-bottom: .4rem; }
+    #tab-projet:checked ~ main #projet { display: block; }
+    #tab-enquete:checked ~ main #enquete { display: block; }
+
+    h2 {
+      font-family: 'Playfair Display', Georgia, serif;
+      color: var(--violet-texte);
+      font-size: 1.9rem;
+      border-bottom: 3px solid var(--violet-header);
+      padding-bottom: .4rem;
+    }
     .video {
       position: relative;
       padding-bottom: 56.25%;
       height: 0;
       overflow: hidden;
-      border-radius: 10px;
-      border: 4px solid var(--mauve-clair);
+      border-radius: 12px;
+      border: 4px solid var(--violet-header);
+      background: var(--violet-clair);
     }
     .video iframe, .video video {
       position: absolute; top: 0; left: 0; width: 100%; height: 100%;
     }
-    footer { text-align: center; color: var(--mauve); padding: 2rem 1rem; font-size: .9rem; }
+    footer {
+      text-align: center;
+      color: #8a63c7;
+      padding: 2rem 1rem;
+      font-size: .9rem;
+    }
   </style>
 </head>
 <body>
 
+  <input type="radio" name="onglet" id="tab-projet" checked>
+  <input type="radio" name="onglet" id="tab-enquete">
+
   <header>
     <h1>numUber.tv</h1>
     <nav>
-      <button class="actif" onclick="afficher('projet', this)">Notre projet</button>
-      <button onclick="afficher('enquete', this)">Notre enquête</button>
+      <label for="tab-projet">Notre projet</label>
+      <label for="tab-enquete">Notre enquête</label>
     </nav>
   </header>
 
   <main>
     <!-- ONGLET 1 : NOTRE PROJET (vidéo) -->
-    <section id="projet" class="actif">
+    <section id="projet">
       <h2>Notre projet</h2>
       <p>Présentation de notre projet en vidéo :</p>
 
       <div class="video">
-        <!-- Option A : vidéo YouTube. Remplace VIDEO_ID par l'identifiant de ta vidéo -->
+        <!-- Remplace VIDEO_ID par l'identifiant de ta vidéo YouTube -->
         <iframe src="https://www.youtube.com/embed/VIDEO_ID" title="Vidéo numUber.tv" allowfullscreen></iframe>
-
-        <!-- Option B : fichier vidéo déposé dans GitHub. Supprime l'iframe ci-dessus
-             et enlève les marques de commentaire autour de la ligne suivante :
-        <video controls src="ma-video.mp4"></video>
-        -->
       </div>
     </section>
 
@@ -102,6 +133,5 @@
 
   <footer>© numUber.tv</footer>
 
-  <script>
-    function afficher(id, bouton) {
-      document.querySelectorAll('section').forEach(s => s.classList.remove('actif'));
+</body>
+</html>
