@@ -16,83 +16,37 @@
       --fond: #fbf8ff;
     }
     * { box-sizing: border-box; }
-    body {
-      margin: 0;
-      font-family: 'Lato', Arial, sans-serif;
-      background: var(--fond);
-      color: #2e1d4a;
-      line-height: 1.75;
-      font-size: 1.05rem;
-    }
-
-    /* Les boutons radio qui commandent les onglets (invisibles) */
+    body { margin: 0; font-family: 'Lato', Arial, sans-serif; background: var(--fond); color: #2e1d4a; line-height: 1.75; font-size: 1.05rem; }
     input[type="radio"] { position: absolute; opacity: 0; pointer-events: none; }
-
-    header {
-      background: var(--violet-header);
-      text-align: center;
-      padding: 2.2rem 1rem 0;
-    }
-    header h1 {
-      margin: 0;
-      font-family: 'Playfair Display', Georgia, serif;
-      font-size: 2.8rem;
-      color: var(--violet-texte);
-      letter-spacing: 1px;
-    }
-    nav {
-      display: flex;
-      justify-content: center;
-      gap: .5rem;
-      margin-top: 1.6rem;
-    }
-    nav label {
-      background: var(--violet-onglet);
-      color: var(--violet-texte);
-      padding: .8rem 1.8rem;
-      font-weight: 700;
-      cursor: pointer;
-      border-radius: 10px 10px 0 0;
-      transition: background .2s;
-    }
+    header { background: var(--violet-header); text-align: center; padding: 2.2rem 1rem 0; }
+    header h1 { margin: 0; font-family: 'Playfair Display', Georgia, serif; font-size: 2.8rem; color: var(--violet-texte); letter-spacing: 1px; }
+    nav { display: flex; justify-content: center; gap: .5rem; margin-top: 1.6rem; }
+    nav label { background: var(--violet-onglet); color: var(--violet-texte); padding: .8rem 1.8rem; font-weight: 700; cursor: pointer; border-radius: 10px 10px 0 0; transition: background .2s; }
     nav label:hover { background: #e6d6fc; }
-
-    /* Onglet actif */
     #tab-projet:checked ~ header label[for="tab-projet"],
-    #tab-enquete:checked ~ header label[for="tab-enquete"] {
-      background: var(--fond);
-    }
-
+    #tab-enquete:checked ~ header label[for="tab-enquete"] { background: var(--fond); }
     main { max-width: 800px; margin: 2.2rem auto; padding: 0 1.2rem; }
     section { display: none; }
     #tab-projet:checked ~ main #projet { display: block; }
     #tab-enquete:checked ~ main #enquete { display: block; }
+    h2 { font-family: 'Playfair Display', Georgia, serif; color: var(--violet-texte); font-size: 1.9rem; border-bottom: 3px solid var(--violet-header); padding-bottom: .4rem; margin-top: 2.5rem; }
+    h3 { font-family: 'Playfair Display', Georgia, serif; color: var(--violet-texte); font-size: 1.35rem; margin-top: 2rem; }
+    h4 { color: var(--violet-texte); margin-bottom: .3rem; }
+    .video { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 12px; border: 4px solid var(--violet-header); background: var(--violet-clair); }
+    .video iframe, .video video { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
 
-    h2 {
-      font-family: 'Playfair Display', Georgia, serif;
-      color: var(--violet-texte);
-      font-size: 1.9rem;
-      border-bottom: 3px solid var(--violet-header);
-      padding-bottom: .4rem;
-    }
-    .video {
-      position: relative;
-      padding-bottom: 56.25%;
-      height: 0;
-      overflow: hidden;
-      border-radius: 12px;
-      border: 4px solid var(--violet-header);
-      background: var(--violet-clair);
-    }
-    .video iframe, .video video {
-      position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-    }
-    footer {
-      text-align: center;
-      color: #8a63c7;
-      padding: 2rem 1rem;
-      font-size: .9rem;
-    }
+    /* Figures (graphiques en HTML/CSS, aucune image à téléverser) */
+    figure { margin: 2rem 0; background: var(--violet-clair); border-radius: 12px; padding: 1rem 1.2rem; }
+    figcaption { font-size: .9rem; color: var(--violet-texte); margin-top: .8rem; font-style: italic; }
+    .bar { display: grid; grid-template-columns: 11rem 1fr 3rem; align-items: center; gap: .6rem; font-size: .9rem; margin: .35rem 0; }
+    .bar .track { background: #fff; border-radius: 6px; height: 1.1rem; overflow: hidden; }
+    .bar i { display: block; height: 100%; background: var(--violet-texte); }
+    .bar b { text-align: right; color: var(--violet-texte); }
+    @media (max-width: 560px) { .bar { grid-template-columns: 1fr 3rem; } .bar .lbl { grid-column: 1 / -1; } }
+
+    .entretien { background: var(--violet-clair); border-left: 5px solid var(--violet-header); padding: .5rem 1.2rem; margin: 1.5rem 0; border-radius: 0 8px 8px 0; }
+    .sources { white-space: pre-line; font-size: .92rem; overflow-wrap: anywhere; }
+    footer { text-align: center; color: #8a63c7; padding: 2rem 1rem; font-size: .9rem; }
   </style>
 </head>
 <body>
@@ -109,61 +63,77 @@
   </header>
 
   <main>
-    <!-- ONGLET 1 : NOTRE PROJET (vidéo) -->
     <section id="projet">
       <h2>Notre projet</h2>
       <p>Présentation de notre projet en vidéo :</p>
-
       <div class="video">
         <!-- Remplace VIDEO_ID par l'identifiant de ta vidéo YouTube -->
         <iframe src="https://www.youtube.com/embed/VIDEO_ID" title="Vidéo numUber.tv" allowfullscreen></iframe>
       </div>
     </section>
 
-    <!-- ONGLET 2 : NOTRE ENQUÊTE (texte) -->
     <section id="enquete">
       <h2>Notre enquête</h2>
-            <h3>Introduction</h3>
-      <p> Rentrer seule le soir reste, pour beaucoup de femmes, une épreuve qui se prépare. Notre enquête en donne la mesure : parmi les 34 étudiantes de Sciences Po interrogées, 62 % déclarent s’être déjà senties en danger ou dérangées par un chauffeur. Ce résultat rejoint ce que les institutions documentent depuis longtemps : selon le Haut Conseil à l’Égalité, la totalité des utilisatrices des transports en commun interrogées ont déjà subi du harcèlement sexiste ou une agression sexuelle .
-C’est dans ce contexte qu’Uber lance en France, le 28 novembre 2024, au lendemain de la Journée internationale pour l’élimination de la violence à l’égard des femmes , l’option Uber by Women, qui permet aux passagères de demander une conductrice. Conçue selon Uber avec des associations comme la Fondation des femmes et le Collectif féministe contre le viol, elle est présentée comme un moyen d’offrir « davantage de choix et de sérénité » . Il ne s’agit pas d’une plateforme autonome mais d’une fonctionnalité : un réglage de l’algorithme qui fait du sexe un critère de mise en relation.
-Le cas est paradoxal pour un enseignement de culture numérique : alors que le numérique s’est longtemps présenté comme un espace où le corps et l’identité cesseraient de compter, Uber by Women fait du genre une variable centrale du service. Nous mobilisons le cadre de Shuhan Qiao, qui oppose deux lectures du VTC pour les femmes  : selon la première (H1), le service émancipe en élargissant leur accès à la ville ; selon la seconde (H2), il traduit une préférence adaptative, les femmes « choisissant » une conductrice parce que l’espace public leur impose la peur.
-Nous montrerons qu’Uber by Women apporte une réponse numérique à une impasse sociale bien réelle (I), mais que cette réponse produit une sécurité rare, marchande et individualisée, qui déplace le problème plus qu’elle ne le résout (II).
-Note méthodologique
-L’enquête croise un questionnaire, « Chauffeur, si t’es championne ! », diffusé auprès d’étudiantes de Sciences Po du 13 au 27 octobre 2026 (8 questions fermées, 34 réponses, annexe 1) ; des entretiens filmés pour notre vidéo, notamment avec Alma Guirao, qui a participé à la conception d’Uber by Women en France, mais que nous n’avons pas pu interroger ; un corpus de presse et de communication d’Uber ; une revue de littérature ; enfin, une comparaison de prix sur un même trajet (annexe 2). L’échantillon, réduit et limité à Sciences Po, fournit des tendances et non des mesures ; une réponse incohérente (usage d’Uber by Women sans usage d’Uber) a été conservée et signalée ; une partie des données sur le service provient d’Uber lui-même.
-</p>
-      <h3>I. Une réponse numérique à une impasse sociale bien réelle </h3>
-<p>Uber by Women s’appuie sur une insécurité ancienne, que le VTC a semblé contourner avant de la reconfigurer (A). La fonctionnalité y répond par un geste technique qui rompt avec l’imaginaire d’un numérique indifférent aux corps (B).
-A. Une insécurité structurelle que le VTC déplace sans la résoudre
-La peur des femmes dans l’espace public est un rapport social plus qu’une émotion individuelle. Gill Valentine montre dès 1989 que les femmes élaborent des « cartes mentales » des lieux et des heures à éviter, qui restreignent leur usage de la ville . Stéphanie Condon, Marylène Lieber et Florence Maillochon établissent que cette peur est socialement produite, par l’expérience des agressions comme par une socialisation qui enseigne la méfiance aux filles . Lieber souligne enfin que la sécurité est renvoyée aux femmes elles-mêmes, invitées à multiplier les précautions  : tant qu’elle repose sur des stratégies individuelles, le problème n’est jamais traité à sa source.
-Le VTC fait figure de refuge face aux transports en commun, mais il crée un risque d’une autre nature : le huis clos avec un inconnu. À partir de 7 898 décisions de justice chinoises et d’une enquête auprès de 596 personnes, Shixingyue Hu et Yazao Yang montrent que le comportement du chauffeur détermine avant tout le sentiment de sécurité des passagères ; ils rappellent qu’en 2018, Didi a réservé son covoiturage nocturne aux passagers du même sexe que le chauffeur . Aux États-Unis, Uber a déclaré 2 717 signalements d’agressions sexuelles en 2021 et 2022 . Le VTC ne supprime pas l’insécurité : il la déplace dans l’habitacle.
-Notre questionnaire confirme l’ampleur de la demande : 88 % des répondantes se sentent plus en sécurité avec une conductrice et 62 % se sont déjà senties en danger. L’expérience vécue pèse nettement : parmi celles qui se sont déjà senties en danger, 86 % sont prêtes à attendre plus longtemps une conductrice, contre 46 % parmi les autres.
- 
-Figure 1. Réponses « Oui » aux huit questions du questionnaire (n = 34, 13-27 octobre 2026).
- 
-Figure 2. Disposition à attendre une conductrice selon l’expérience d’un épisode de danger ou de gêne (n = 34).
-</p>
-     <h3>B. Uber by Women, ou le retour du corps dans l’utopie numérique</h3>
- <p>L’option figure dans le menu de l’application au même titre qu’UberX. Elle met exclusivement en relation passagères et conductrices, de jour comme de nuit ; les conductrices qui l’activent reçoivent ces courses en plus de leurs courses habituelles . Uber n’a pas inventé l’idée : une fonctionnalité comparable existait en Arabie saoudite dès 2019, l’option a été étendue à l’ensemble des États-Unis en mars 2026 et des déclinaisons existent dans une quarantaine de pays . En France, une application de VTC entièrement féminine, Lady’s, s’est lancée en Île-de-France  : la sécurité des femmes devient un segment de marché. 
-La promesse d’émancipation est double. Pour les passagères, conformément à H1, l’option leur rend la maîtrise de leurs trajets nocturnes. Pour les conductrices, elle promet davantage de courses et de sécurité : leur part parmi les chauffeurs Uber en France est passée de 2,3 % à 4 % entre février 2024 et février 2025 , même si elles gagnent en moyenne environ 7 % de moins que leurs homologues masculins .
-</p>
-       <h2>II. Une sécurité rare, marchande et individualisée<h2/>
-<p>La sécurité promise demeure conditionnelle : elle dépend d’une offre insuffisante et d’un prix que toutes ne sont pas prêtes à payer (A). Plus profondément, elle convertit un problème collectif en choix individuel (B)</p>
-<h3>A. Une protection conditionnelle : rareté de l’offre et prix de la peur</h3>
-À son lancement à Paris, le service reposait sur environ 1 500 conductrices, dont 30 % ne roulent pas la nuit : il n’en restait qu’environ 1 050 entre 22 heures et 6 heures, au moment où la demande est la plus forte, pour une attente moyenne de 15 minutes contre 4 pour un UberX . Cette rareté n’a rien d’accidentel : elle reflète la place marginale des femmes dans un métier précaire et très masculin.
-Notre comparaison, sur un même trajet et au même moment, donne [X] € pour un Uber classique et [Y] € pour Uber by Women (annexe 2). Ce surcoût s’apparente à une « taxe sur la peur » : les femmes paient pour réduire un risque qu’elles n’ont pas créé. Or la préférence pour une conductrice s’avère forte mais négociable : 79 % des répondantes reprendraient un Uber classique si l’option était trop chère, seules 35 % jugent le surplus justifié, et parmi les dix utilisatrices de l’option, sept reviendraient à un Uber classique. La sécurité se comporte ainsi comme un bien de confort, ce qui creuse, selon Qiao, les inégalités entre femmes selon leurs revenus et leur lieu de résidence .
-Le coût pèse aussi sur les conductrices. Sarah Abdelnour et Sophie Bernard montrent que le capitalisme de plateforme mobilise un travail indépendant en contournant les protections du salariat  ; les conductrices restent soumises au management algorithmique décrit par Alex Rosenblat et Luke Stark  et aux contraintes de santé au travail analysées par Salma El Bourkad . Le service leur assigne en outre un rôle implicite de protection, traditionnellement dévolu aux femmes.</p>
-<h3>B. Une réponse individuelle à un problème collectif</h3>
-<p>Le dispositif comporte d’abord un angle mort intersectionnel. Sophie Bernard montre que les chauffeurs de VTC sont en majorité des hommes racisés issus de quartiers populaires  : en désignant implicitement le chauffeur masculin comme une menace, l’option risque de conforter des stéréotypes déjà lourds. C’est l’argument des deux chauffeurs qui ont engagé une action collective contre Uber en Californie .
-Uber by Women illustre surtout l’hypothèse H2. Le service ne transforme pas l’espace public : il propose aux femmes de s’en prémunir, à condition d’attendre et de payer, prolongeant la logique d’une sécurité laissée à leur charge . Nancy Fraser a montré comment certaines revendications féministes pouvaient être réappropriées par le capitalisme et converties en produits  ; une fonctionnalité conçue avec des associations et lancée au lendemain d’une journée militante en offre une illustration.
-Le droit, enfin, admet l’option sans trancher le fond. L’article 225-3 du Code pénal exclut de la répression les différences de traitement dans l’accès aux services lorsqu’elles sont « justifiées par la protection des victimes de violences à caractère sexuel » ou par « la promotion de l’égalité des sexes » , cadre dans lequel Uber by Women entre vraisemblablement. Mais il ne répond pas à la question essentielle : à qui revient-il de garantir cette sécurité ?
-</p>
-       <h2>Conclusion<h2/>
-Uber by Women n’est ni une révolution ni un simple gadget. La fonctionnalité répond à une peur réelle, que notre enquête mesure à son échelle, et l’hypothèse de l’émancipation n’est pas infondée : pour certaines femmes, elle transforme la manière de rentrer le soir. Elle relève pourtant davantage du pansement algorithmique que de la solution : la sécurité offerte est rare, conditionnelle et individualisée, et nos répondantes y renoncent dès que le prix augmente. L’hypothèse de la préférence adaptative rend mieux compte de la situation : le service s’adapte à la peur plutôt qu’il ne la fait reculer.
-Uber by Women a néanmoins le mérite de rendre visible un problème souvent tu. Il invite à poser une question qui dépasse la plateforme : la sécurité des femmes dans leurs déplacements doit-elle être vendue par une entreprise privée, ou garantie par les pouvoirs publics, à travers les transports de nuit, l’aménagement urbain et la prévention des violences ?
-</p>
-      <h2>NOS SOURCES</h2>
-      <p>Ouvrages et articles scientifiques
-Abdelnour, S. et Bernard, S. (2018), « Vers un capitalisme de plateforme ? Mobiliser le travail, contourner les régulations », La Nouvelle Revue du travail, 13. https://doi.org/10.4000/nrt.3797
+
+      <h3>Introduction</h3>
+      <p>Rentrer seule le soir reste, pour beaucoup de femmes, une épreuve qui se prépare. Notre enquête en donne la mesure : parmi les 34 étudiantes de Sciences Po interrogées, 62 % déclarent s’être déjà senties en danger ou dérangées par un chauffeur. Ce résultat rejoint ce que les institutions documentent depuis longtemps : selon le Haut Conseil à l’Égalité, la totalité des utilisatrices des transports en commun interrogées ont déjà subi du harcèlement sexiste ou une agression sexuelle.</p>
+      <p>C’est dans ce contexte qu’Uber lance en France, le 28 novembre 2024, au lendemain de la Journée internationale pour l’élimination de la violence à l’égard des femmes, l’option Uber by Women, qui permet aux passagères de demander une conductrice. Conçue selon Uber avec des associations comme la Fondation des femmes et le Collectif féministe contre le viol, elle est présentée comme un moyen d’offrir « davantage de choix et de sérénité ». Il ne s’agit pas d’une plateforme autonome mais d’une fonctionnalité : un réglage de l’algorithme qui fait du sexe un critère de mise en relation.</p>
+      <p>Le cas est paradoxal pour un enseignement de culture numérique : alors que le numérique s’est longtemps présenté comme un espace où le corps et l’identité cesseraient de compter, Uber by Women fait du genre une variable centrale du service. Nous mobilisons le cadre de Shuhan Qiao, qui oppose deux lectures du VTC pour les femmes : selon la première (H1), le service émancipe en élargissant leur accès à la ville ; selon la seconde (H2), il traduit une préférence adaptative, les femmes « choisissant » une conductrice parce que l’espace public leur impose la peur.</p>
+      <p>Nous montrerons qu’Uber by Women apporte une réponse numérique à une impasse sociale bien réelle (I), mais que cette réponse produit une sécurité rare, marchande et individualisée, qui déplace le problème plus qu’elle ne le résout (II).</p>
+
+      <h3>Note méthodologique</h3>
+      <p>L’enquête croise un questionnaire, « Chauffeur, si t’es championne ! », diffusé auprès d’étudiantes de Sciences Po du 13 au 27 octobre 2026 (8 questions fermées, 34 réponses) ; des entretiens filmés pour notre vidéo, notamment avec Alma Guirao, qui a participé à la conception d’Uber by Women en France, mais que nous n’avons pas pu interroger ; un corpus de presse et de communication d’Uber ; une revue de littérature ; enfin, une comparaison de prix sur un même trajet. L’échantillon, réduit et limité à Sciences Po, fournit des tendances et non des mesures ; une réponse incohérente (usage d’Uber by Women sans usage d’Uber) a été conservée et signalée ; une partie des données sur le service provient d’Uber lui-même.</p>
+
+      <h2>I. Une réponse numérique à une impasse sociale bien réelle</h2>
+      <p>Uber by Women s’appuie sur une insécurité ancienne, que le VTC a semblé contourner avant de la reconfigurer (A). La fonctionnalité y répond par un geste technique qui rompt avec l’imaginaire d’un numérique indifférent aux corps (B).</p>
+
+      <h3>A. Une insécurité structurelle que le VTC déplace sans la résoudre</h3>
+      <p>La peur des femmes dans l’espace public est un rapport social plus qu’une émotion individuelle. Gill Valentine montre dès 1989 que les femmes élaborent des « cartes mentales » des lieux et des heures à éviter, qui restreignent leur usage de la ville. Stéphanie Condon, Marylène Lieber et Florence Maillochon établissent que cette peur est socialement produite, par l’expérience des agressions comme par une socialisation qui enseigne la méfiance aux filles. Lieber souligne enfin que la sécurité est renvoyée aux femmes elles-mêmes, invitées à multiplier les précautions : tant qu’elle repose sur des stratégies individuelles, le problème n’est jamais traité à sa source.</p>
+      <p>Le VTC fait figure de refuge face aux transports en commun, mais il crée un risque d’une autre nature : le huis clos avec un inconnu. À partir de 7 898 décisions de justice chinoises et d’une enquête auprès de 596 personnes, Shixingyue Hu et Yazao Yang montrent que le comportement du chauffeur détermine avant tout le sentiment de sécurité des passagères ; ils rappellent qu’en 2018, Didi a réservé son covoiturage nocturne aux passagers du même sexe que le chauffeur. Aux États-Unis, Uber a déclaré 2 717 signalements d’agressions sexuelles en 2021 et 2022. Le VTC ne supprime pas l’insécurité : il la déplace dans l’habitacle.</p>
+      <p>Notre questionnaire confirme l’ampleur de la demande : 88 % des répondantes se sentent plus en sécurité avec une conductrice et 62 % se sont déjà senties en danger. L’expérience vécue pèse nettement : parmi celles qui se sont déjà senties en danger, 86 % sont prêtes à attendre plus longtemps une conductrice, contre 46 % parmi les autres.</p>
+
+      <figure>
+        <div class="bar"><span class="lbl">A déjà pris un Uber</span><span class="track"><i style="width:85%"></i></span><b>85 %</b></div>
+        <div class="bar"><span class="lbl">A déjà pris Uber by Women</span><span class="track"><i style="width:29%"></i></span><b>29 %</b></div>
+        <div class="bar"><span class="lbl">Condition (« c’est ça ou rien »)</span><span class="track"><i style="width:12%"></i></span><b>12 %</b></div>
+        <div class="bar"><span class="lbl">Prête à reprendre un Uber classique si trop cher</span><span class="track"><i style="width:79%"></i></span><b>79 %</b></div>
+        <div class="bar"><span class="lbl">Surplus financier justifié</span><span class="track"><i style="width:35%"></i></span><b>35 %</b></div>
+        <div class="bar"><span class="lbl">Plus en sécurité avec une conductrice</span><span class="track"><i style="width:88%"></i></span><b>88 %</b></div>
+        <div class="bar"><span class="lbl">Déjà en danger ou dérangée par un chauffeur</span><span class="track"><i style="width:62%"></i></span><b>62 %</b></div>
+        <div class="bar"><span class="lbl">Prête à attendre plus longtemps</span><span class="track"><i style="width:71%"></i></span><b>71 %</b></div>
+        <figcaption>Figure 1. Réponses « Oui » aux huit questions du questionnaire (n = 34, 13-27 octobre 2026).</figcaption>
+      </figure>
+
+      <figure>
+        <div class="bar"><span class="lbl">Déjà senties en danger (18 / 21)</span><span class="track"><i style="width:86%"></i></span><b>86 %</b></div>
+        <div class="bar"><span class="lbl">Jamais senties en danger (6 / 13)</span><span class="track"><i style="width:46%"></i></span><b>46 %</b></div>
+        <figcaption>Figure 2. Disposition à attendre une conductrice selon l’expérience d’un épisode de danger ou de gêne (n = 34).</figcaption>
+      </figure>
+
+      <h3>B. Uber by Women, ou le retour du corps dans l’utopie numérique</h3>
+      <p>L’option figure dans le menu de l’application au même titre qu’UberX. Elle met exclusivement en relation passagères et conductrices, de jour comme de nuit ; les conductrices qui l’activent reçoivent ces courses en plus de leurs courses habituelles. Uber n’a pas inventé l’idée : une fonctionnalité comparable existait en Arabie saoudite dès 2019, l’option a été étendue à l’ensemble des États-Unis en mars 2026 et des déclinaisons existent dans une quarantaine de pays. En France, une application de VTC entièrement féminine, Lady’s, s’est lancée en Île-de-France : la sécurité des femmes devient un segment de marché.</p>
+      <p>La promesse d’émancipation est double. Pour les passagères, conformément à H1, l’option leur rend la maîtrise de leurs trajets nocturnes. Pour les conductrices, elle promet davantage de courses et de sécurité : leur part parmi les chauffeurs Uber en France est passée de 2,3 % à 4 % entre février 2024 et février 2025, même si elles gagnent en moyenne environ 7 % de moins que leurs homologues masculins.</p>
+
+      <h2>II. Une sécurité rare, marchande et individualisée</h2>
+      <p>La sécurité promise demeure conditionnelle : elle dépend d’une offre insuffisante et d’un prix que toutes ne sont pas prêtes à payer (A). Plus profondément, elle convertit un problème collectif en choix individuel (B).</p>
+
+      <h3>A. Une protection conditionnelle : rareté de l’offre et prix de la peur</h3>
+      <p>À son lancement à Paris, le service reposait sur environ 1 500 conductrices, dont 30 % ne roulent pas la nuit : il n’en restait qu’environ 1 050 entre 22 heures et 6 heures, au moment où la demande est la plus forte, pour une attente moyenne de 15 minutes contre 4 pour un UberX. Cette rareté n’a rien d’accidentel : elle reflète la place marginale des femmes dans un métier précaire et très masculin.</p>
+      <p>Notre comparaison, sur un même trajet et au même moment, donne 12,55 € pour un Uber classique et 13,45 € pour Uber by Women. Ce surcoût s’apparente à une « taxe sur la peur » : les femmes paient pour réduire un risque qu’elles n’ont pas créé. Or la préférence pour une conductrice s’avère forte mais négociable : 79 % des répondantes reprendraient un Uber classique si l’option était trop chère, seules 35 % jugent le surplus justifié, et parmi les dix utilisatrices de l’option, sept reviendraient à un Uber classique. La sécurité se comporte ainsi comme un bien de confort, ce qui creuse, selon Qiao, les inégalités entre femmes selon leurs revenus et leur lieu de résidence.</p>
+      <p>Le coût pèse aussi sur les conductrices. Sarah Abdelnour et Sophie Bernard montrent que le capitalisme de plateforme mobilise un travail indépendant en contournant les protections du salariat ; les conductrices restent soumises au management algorithmique décrit par Alex Rosenblat et Luke Stark et aux contraintes de santé au travail analysées par Salma El Bourkad. Le service leur assigne en outre un rôle implicite de protection, traditionnellement dévolu aux femmes.</p>
+
+      <h3>B. Une réponse individuelle à un problème collectif</h3>
+      <p>Le dispositif comporte d’abord un angle mort intersectionnel. Sophie Bernard montre que les chauffeurs de VTC sont en majorité des hommes racisés issus de quartiers populaires : en désignant implicitement le chauffeur masculin comme une menace, l’option risque de conforter des stéréotypes déjà lourds. C’est l’argument des deux chauffeurs qui ont engagé une action collective contre Uber en Californie.</p>
+      <p>Uber by Women illustre surtout l’hypothèse H2. Le service ne transforme pas l’espace public : il propose aux femmes de s’en prémunir, à condition d’attendre et de payer, prolongeant la logique d’une sécurité laissée à leur charge. Nancy Fraser a montré comment certaines revendications féministes pouvaient être réappropriées par le capitalisme et converties en produits ; une fonctionnalité conçue avec des associations et lancée au lendemain d’une journée militante en offre une illustration.</p>
+      <p>Le droit, enfin, admet l’option sans trancher le fond. L’article 225-3 du Code pénal exclut de la répression les différences de traitement dans l’accès aux services lorsqu’elles sont « justifiées par la protection des victimes de violences à caractère sexuel » ou par « la promotion de l’égalité des sexes », cadre dans lequel Uber by Women entre vraisemblablement. Mais il ne répond pas à la question essentielle : à qui revient-il de garantir cette sécurité ?</p>
+
+      <h2>Conclusion</h2>
+      <p>Uber by Women n’est ni une révolution ni un simple gadget. La fonctionnalité répond à une peur réelle, que notre enquête mesure à son échelle, et l’hypothèse de l’émancipation n’est pas infondée : pour certaines femmes, elle transforme la manière de rentrer le soir. Elle relève pourtant davantage du pansement algorithmique que de la solution : la sécurité offerte est rare, conditionnelle et individualisée, et nos répondantes y renoncent dès que le prix augmente. L’hypothèse de la préférence adaptative rend mieux compte de la situation : le service s’adapte à la peur plutôt qu’il ne la fait reculer.</p>
+      <p>Uber by Women a néanmoins le mérite de rendre visible un problème souvent tu. Il invite à poser une question qui dépasse la plateforme : la sécurité des femmes dans leurs déplacements doit-elle être vendue par une entreprise privée, ou garantie par les pouvoirs publics, à travers les transports de nuit, l’aménagement urbain et la prévention des violences ?</p>
+
+      <h2>Nos sources</h2>
+      <h4>Ouvrages et articles scientifiques</h4>
+      <p class="sources">Abdelnour, S. et Bernard, S. (2018), « Vers un capitalisme de plateforme ? Mobiliser le travail, contourner les régulations », La Nouvelle Revue du travail, 13. https://doi.org/10.4000/nrt.3797
 Bernard, S. (2023), UberUsés. Le capitalisme racial de plateforme à Paris, Londres et Montréal, PUF (compte rendu). https://journals.openedition.org/sdt/47004
 Condon, S., Lieber, M. et Maillochon, F. (2005), « Insécurité dans les espaces publics : comprendre les peurs féminines », Revue française de sociologie, 46(2), 265-294. https://doi.org/10.3917/rfs.462.0265
 Cook, C., Diamond, R., Hall, J., List, J. A. et Oyer, P. (2021), « The Gender Earnings Gap in the Gig Economy », Review of Economic Studies, 88(5), 2210-2238. https://doi.org/10.1093/restud/rdaa081
@@ -173,17 +143,16 @@ Hu, S. et Yang, Y. (2024), « Safety of Female Ride-Hailing Passengers: Percepti
 Lieber, M. (2008), Genre, violences et espaces publics. La vulnérabilité des femmes en question, Presses de Sciences Po (compte rendu). https://journals.openedition.org/lectures/695
 Qiao, S. (2025), « Reframing the Dualistic Nature of Ride-Hailing for Women: Empowerment Versus Adaptive Preferences », Annals of the American Association of Geographers, 115(6), 1207-1227. https://doi.org/10.1080/24694452.2025.2478252
 Rosenblat, A. et Stark, L. (2016), « Algorithmic Labor and Information Asymmetries: A Case Study of Uber’s Drivers », International Journal of Communication, 10, 3758-3784. https://ijoc.org/index.php/ijoc/article/view/4892
-Valentine, G. (1989), « The Geography of Women’s Fear », Area, 21(4), 385-390. https://www.jstor.org/stable/20000063
-Sources institutionnelles et juridiques
-Code pénal, article 225-3 (version en vigueur), Légifrance. https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000043895868
-Haut Conseil à l’Égalité entre les femmes et les hommes (2015), Avis sur le harcèlement sexiste et les violences sexuelles dans les transports en commun. https://www.haut-conseil-egalite.gouv.fr/IMG/pdf/hcefh_avis_harcelement_2015-04-16-vio-16.pdf
-Presse et sources d’entreprise
-Le Figaro (22/02/2026), « Rentrer plus sereines chez elles : Lady’s, la nouvelle application française de VTC 100 % féminins en Île-de-France ». https://www.lefigaro.fr/societes/rentrer-plus-sereines-chez-elles-lady-s-la-nouvelle-application-francaise-de-vtc-100-feminins-en-ile-de-france-20260222
+Valentine, G. (1989), « The Geography of Women’s Fear », Area, 21(4), 385-390. https://www.jstor.org/stable/20000063</p>
+      <h4>Sources institutionnelles et juridiques</h4>
+      <p class="sources">Code pénal, article 225-3 (version en vigueur), Légifrance. https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000043895868
+Haut Conseil à l’Égalité entre les femmes et les hommes (2015), Avis sur le harcèlement sexiste et les violences sexuelles dans les transports en commun. https://www.haut-conseil-egalite.gouv.fr/IMG/pdf/hcefh_avis_harcelement_2015-04-16-vio-16.pdf</p>
+      <h4>Presse et sources d’entreprise</h4>
+      <p class="sources">Le Figaro (22/02/2026), « Rentrer plus sereines chez elles : Lady’s, la nouvelle application française de VTC 100 % féminins en Île-de-France ». https://www.lefigaro.fr/societes/rentrer-plus-sereines-chez-elles-lady-s-la-nouvelle-application-francaise-de-vtc-100-feminins-en-ile-de-france-20260222
 Le Parisien (15/12/2024), « Quand le chauffeur est une femme : on a testé Uber by Women au cœur de la nuit parisienne ». https://www.leparisien.fr/societe/quand-le-chauffeur-est-une-femme-on-a-teste-uber-by-women-au-coeur-de-la-nuit-parisienne-14-12-2024-HASM2SDNAZCS3J43WD2TTLPLUQ.php
 Libération (28/11/2024), « À Paris, Uber by Women et ses 1 500 conductrices pour ramener les femmes chez elles en sécurité ». https://www.liberation.fr/societe/droits-des-femmes/a-paris-uber-by-women-et-ses-1-500-conductrices-pour-ramener-les-femmes-chez-elle-en-securite-20241128_7V2JXYDALNDSDFVSCKMELBSJ3M/
 PBS News (09/03/2026), « Women-only option for Uber goes nationwide in U.S. ». https://www.pbs.org/newshour/nation/women-only-option-for-uber-goes-nationwide-in-u-s
-Uber Newsroom France, « Uber by Women, notre produit pour les femmes ». https://www.uber.com/fr/fr/newsroom/uber-by-women-notre-produit-pour-les-femmes/
-</p>
+Uber Newsroom France, « Uber by Women, notre produit pour les femmes ». https://www.uber.com/fr/fr/newsroom/uber-by-women-notre-produit-pour-les-femmes/</p>
     </section>
   </main>
 
